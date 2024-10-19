@@ -7,6 +7,7 @@ import com.api_auth.login_auth_api.dto.ResponseDTO;
 import com.api_auth.login_auth_api.infra.security.TokenService;
 import com.api_auth.login_auth_api.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class AuthController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterRequestDTO body){
         Optional<User> user = this.repository.findByEmail(body.email());
         if(user.isEmpty()){
